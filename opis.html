@@ -45,7 +45,7 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
-            <p>Aplikacija <strong>Moj zdravi pomočnik</strong>, deluje tako, da uporabnik v aplikacijo uporabi s svojim EHR in s tem pridobi podatke o svojem napredku/nazodovanju pri poti do bolj zdravega načina življenja.
+            <p>Aplikacija <strong>Moj zdravi pomočnik</strong>, deluje tako, da uporabnik v aplikacijo uporabi s svojim EhrID in s tem pridobi podatke o svojem napredku/nazodovanju pri poti do bolj zdravega načina življenja.
               Aplikacija uporabniku omogočo celovit in lažji pregled pri spremembi kilogramov in vnosu kalorij. Hkrati pa mu omogoča tudi beleženje popite količine vode in ga v primeru, da jo je spil premalo
               obvesti s sporočilo. Ciljna publika so ljudje vseh starosti. V primeru, da uporabnik trpi za raznimi bolimijami, preobilnostjo, itd. pa je aplikaci zelo uporabna tudi za osebne zdravnike in svojce, ki
               s pomočjo nje lahko spremljajo napredek.</p>
@@ -58,7 +58,10 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije).</p>
+            <p>Moja zunanja povezava: <a href="https://www.facebook.com/nutris.zdrava.prehrana/?fref=ts">Facebook</a> Do njega je možen dostop preko API-ja.</p>
+            <p>Z uporabo zunaje povezave lahko uporabnik dostopa do strani, z zdravo prehrano/ recepti. Po želji lahko tam dobi dodatne inforaciji, ali pa jih izmnja
+            z drugimi sledilci te strani</p>
+            <!--Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije)-->
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
@@ -68,7 +71,8 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
-            <p><strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
+            <p>Z master/detail načrtovalskim vzorcem bom prikazala najpomembnejše podatke s pomočjo dveh grafo (težo in količino vode) ter z eno tabelo (kalorije). </p>
+              <!---<strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
             <!-- KONEC: Master/detail načrtovalski vzorec -->
           </div>
         </div>
@@ -78,7 +82,10 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>
+            <p>Podatki o dnevnem zaužitju vode, ter o spremembi teže si vizualizirani z grafom. Ta tehnika je bila izbrana saj je s tem načinom najlažje spremljati dnvna spreminjanja.
+            Dnevni vnos kalorij pa je shranjen v tabeli, saj je s tem število kalorij bolj pregledno kot v grafu. V tabeli bodo vsi tako premajhni, kot preveliki vnosi obarvani z rdečo,
+            z zeleno barva pa bojo obarvani vnosi, ki so pravšnji ali pa z majhnim (zanemarljivim) odstopanjem</p>
+              <!-----<strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>--->
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
