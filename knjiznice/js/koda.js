@@ -234,7 +234,7 @@ function preberiMeritveVitalnihZnakov() {
 					});
 				
 				    
-				} else if (tip == "telesna teža") {
+				}if (tip == "telesna teža") {
 					$.ajax({
 					    url: baseUrl + "/view/" + ehrId + "/" + "weight",
 					    type: 'GET',
@@ -263,75 +263,25 @@ function preberiMeritveVitalnihZnakov() {
                   JSON.parse(err.responseText).userMessage + "'!");
 					    }
 					});
-				} else if (tip == "telesna temperatura AQL") {
-					var AQL =
-						"select " +
-    						"t/data[at0002]/events[at0003]/time/value as cas, " +
-    						"t/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/magnitude as temperatura_vrednost, " +
-    						"t/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/units as temperatura_enota " +
-						"from EHR e[e/ehr_id/value='" + ehrId + "'] " +
-						"contains OBSERVATION t[openEHR-EHR-OBSERVATION.body_temperature.v1] " +
-						"where t/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/magnitude<35 " +
-						"order by t/data[at0002]/events[at0003]/time/value desc " +
-						"limit 10";
-					$.ajax({
-					    url: baseUrl + "/query?" + $.param({"aql": AQL}),
-					    type: 'GET',
-					    headers: {"Ehr-Session": sessionId},
-					    success: function (res) {
-					    	var results = "<table class='table table-striped table-hover'>" +
-                  "<tr><th>Datum in ura</th><th class='text-right'>" +
-                  "Telesna temperatura</th></tr>";
-					    	if (res) {
-					    		var rows = res.resultSet;
-						        for (var i in rows) {
-						            results += "<tr><td>" + rows[i].cas +
-                          "</td><td class='text-right'>" +
-                          rows[i].temperatura_vrednost + " " 	+
-                          rows[i].temperatura_enota + "</td>";
-						        }
-						        results += "</table>";
-						        $("#rezultatMeritveVitalnihZnakov").append(results);
-					    	} else {
-					    		$("#preberiMeritveVitalnihZnakovSporocilo").html(
-                    "<span class='obvestilo label label-warning fade-in'>" +
-                    "Ni podatkov!</span>");
-					    	}
-
-					    },
-					    error: function() {
-					    	$("#preberiMeritveVitalnihZnakovSporocilo").html(
-                  "<span class='obvestilo label label-danger fade-in'>Napaka '" +
-                  JSON.parse(err.responseText).userMessage + "'!");
-					    }
-					});
-				}
-	    	},
-	    	error: function(err) {
-	    		$("#preberiMeritveVitalnihZnakovSporocilo").html(
-            "<span class='obvestilo label label-danger fade-in'>Napaka '" +
-            JSON.parse(err.responseText).userMessage + "'!");
-	    	}
-		});
-	}
+				} 
+	    	
 }
 
 
-$(document).ready(function() {
 
   /**
    * Napolni testne vrednosti (ime, priimek in datum rojstva) pri kreiranju
    * EHR zapisa za novega bolnika, ko uporabnik izbere vrednost iz
    * padajočega menuja (npr. Pujsa Pepa).
    */
-  $('#preberiPredlogoBolnika').change(function() {
+    ('#preberiPredlogoBolnika').change(function() {
     $("#kreirajSporocilo").html("");
     var podatki = $(this).val().split(",");
     $("#KreirajSpol").val(podatki[0]);
     $("#kreirajIme").val(podatki[1]);
     $("#kreirajPriimek").val(podatki[2]);
     $("#kreirajDatumRojstva").val(podatki[3]);
-  });
+  })
 
   /**
    * Napolni testni EHR ID pri prebiranju EHR zapisa obstoječega bolnika,
@@ -383,14 +333,65 @@ $(document).ready(function() {
  * @param stPacienta zaporedna številka pacienta (1, 2 ali 3)
  * @return ehrId generiranega pacienta
  */
-function generirajPodatke() {
+var generirajPodatke = function() {
     
+    //EHR
+    $('#preberiEhrIdZaVitalneZnake').html("");
+    $('#preberiEhrIdZaVitalneZnake').val($(this).val());
+    $("#preberiSporocilo").html("");
     
+    generirajPodatke(1);
+    generirajPodatke(2);
+    generirajPodatke(3);
+}
+var generirajPodatkeZaUporabnike = function(zahteva){
     
-  ehrId = "";
-  ime = "";
-  priimek = "";
+    var ehrId = "";
+    var spol = "";
+    var ime = "";
+    var priimek = "";
+    var datumRojstva = "";
+    var datumInUra = "";
+    var TelesnaTeža = "";
+    var TelesnaVišina = "";
+    var KoličinaZaužiteVode = "";
+    var ŠteviloZaužitihKalorij = "";
   
+    if(zahteva == 1){
+        var spol = "Moški";
+        var ime = "Peter";
+        var priimek = "Mankoč";
+        var datumRojstva = "1988-12-27T12:66";
+        var datumi = ["2016-01-02T12:66";"2016-02-02T12:66";"2016-03-02T12:66";"2016-04-02T12:66";"2016-05-02T12:66";"2016-06-02T12:66"];
+        var TelesnaTeža = [55,54,57,52,52,55];
+        var TelesnaVišina = [177,177,177,177,177,177];
+        var KoličinaZaužiteVode = [1,2,2,3,5,1];
+        var ŠteviloZaužitihKalorij = [1000,1500,1600,1300,2000,2500];
+    }
+    
+    if(zahteva == 2){
+        var spol = "Moški";
+        var ime = "Miha";
+        var priimek = "Mali";
+        var datumRojstva = "1972-08-27T12:66";
+        var datumi = ["2016-01-02T12:66";"2016-02-02T12:66";"2016-03-02T12:66";"2016-04-02T12:66";"2016-05-02T12:66";"2016-06-02T12:66"];
+        var TelesnaTeža = [155,154,157,152,152,151];
+        var TelesnaVišina = [187,187,187,187,187,187];
+        var KoličinaZaužiteVode = [1,2,2,3,0.5,1];
+        var ŠteviloZaužitihKalorij = [5000,7000,4500,5300,4000,3000];
+    }
+    
+    if(zahteva == 3){
+        var spol = "Ženski";
+        var ime = "Sanja";
+        var priimek = "Lakovič";
+        var datumRojstva = "1995-06-27T12:66";
+        var datumi = ["2016-01-02T12:66";"2016-02-02T12:66";"2016-03-02T12:66";"2016-04-02T12:66";"2016-05-02T12:66";"2016-06-02T12:66"];
+        var TelesnaTeža = [55,54,57,52,52,55];
+        var TelesnaVišina = [167,167,167,167,167,167];
+        var KoličinaZaužiteVode = [1,2,2,3,5,1];
+        var ŠteviloZaužitihKalorij = [1000,900,1200,1800,2000,2000];
+    }
 
   // TODO: Potrebno implementirati
 
